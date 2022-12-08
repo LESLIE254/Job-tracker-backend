@@ -3,11 +3,13 @@ class ApplicationsController < ApplicationController
         render json: Application.all
     end
     def create
-        Application.create(
+        application = Application.create!(
             user_id: params[:user_id],
             job_id: params[:job_id],
             application_stage: "submitted"
         )
+        render json: application, status: :created
+
     end
 
     def show
